@@ -26,6 +26,7 @@ class CreateCorrespondenciaTable extends Migration
 
             $table->foreign('idprioridad')->references('id')->on('prioridad')->delete('cascade');
             $table->foreign('idempresa')->references('id')->on('empresa')->delete('cascade');
+            $table->softDeletes();
         });
     }
 

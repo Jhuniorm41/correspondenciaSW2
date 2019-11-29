@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Correspondencia;
+use App\Correspondencia;
 
 class CorrespondenciaController extends Controller
 {

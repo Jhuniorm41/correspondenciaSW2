@@ -30,6 +30,7 @@ class CreateAsignacionTable extends Migration
             $table->foreign('idetapa')->references('id')->on('etapa')->delete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

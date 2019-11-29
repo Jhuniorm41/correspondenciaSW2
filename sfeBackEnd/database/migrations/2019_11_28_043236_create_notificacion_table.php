@@ -21,6 +21,7 @@ class CreateNotificacionTable extends Migration
             $table->foreign('idasignacion')->references('id')->on('asignacion')->delete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

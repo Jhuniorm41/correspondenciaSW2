@@ -19,6 +19,7 @@ class CreatePrioridadTable extends Migration
             $table->integer('cantdias');
             $table->string('nombre');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

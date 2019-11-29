@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Asignacion;
+use App\Asignacion;
 
 class AsignacionController extends Controller
 {

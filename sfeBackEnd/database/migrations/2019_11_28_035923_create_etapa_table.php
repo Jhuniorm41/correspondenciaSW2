@@ -19,6 +19,7 @@ class CreateEtapaTable extends Migration
             $table->string('fechafin');
             $table->integer('nivel');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -23,7 +23,10 @@ class PersonalSeeder extends Seeder
             [
                 'ci' => '123123',
                 'nombre' => 'juan',
-                'cargo' => '1'
+                'telefono' => '123456',
+                'correo' => 'paul@gmail.com',
+                'cargo' => 'admin',
+                'area' => 'operaciones'
             ]
         ];
     }

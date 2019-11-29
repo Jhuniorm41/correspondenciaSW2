@@ -19,6 +19,7 @@ class CreateEmpresaTable extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

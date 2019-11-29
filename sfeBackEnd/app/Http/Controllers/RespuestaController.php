@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\Respuesta;
+use App\Respuesta;
 
 use Illuminate\Http\Request;
 
@@ -14,6 +14,7 @@ class RespuestaController extends Controller
      */
     public function index()
     {
+        // get api/respuesta
         $respuestas = Respuesta::all();
         return $respuestas;
     }
@@ -36,6 +37,7 @@ class RespuestaController extends Controller
      */
     public function store(Request $request)
     {
+        // post api/respuesta
         $respuesta = new Respuesta();
         $respuesta->fecharespuesta = $request->fecharespuesta;
         $respuesta->detalle = $request->detalle;
