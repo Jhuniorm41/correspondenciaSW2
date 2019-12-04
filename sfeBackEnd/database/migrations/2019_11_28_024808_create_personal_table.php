@@ -21,6 +21,7 @@ class CreatePersonalTable extends Migration
             $table->string('correo');
             $table->string('cargo');
             $table->string('area');
+            $table->text('token')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Etapa;
 
 class EtapaController extends Controller
 {
@@ -13,7 +14,8 @@ class EtapaController extends Controller
      */
     public function index()
     {
-        //
+        $etapa = Etapa::all();
+        return $etapa;
     }
 
     /**
@@ -34,7 +36,12 @@ class EtapaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $etapa = new Etapa();
+        $etapa->fechaInicio = $request->fechaInico;
+        $etapa->fechaFin = $request->fechaFin;
+        $etapa->nivel = $request->nivel;
+        $etapa->save();
+        return $etapa;
     }
 
     /**
