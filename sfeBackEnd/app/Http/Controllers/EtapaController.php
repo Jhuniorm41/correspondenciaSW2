@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Etapa;
 
@@ -37,8 +36,8 @@ class EtapaController extends Controller
     public function store(Request $request)
     {
         $etapa = new Etapa();
-        $etapa->fechaInicio = $request->fechaInico;
-        $etapa->fechaFin = $request->fechaFin;
+        $etapa->fechainicio = $request->fechainicio;
+        $etapa->fechafin = $request->fechafin;
         $etapa->nivel = $request->nivel;
         $etapa->save();
         return $etapa;
@@ -75,7 +74,12 @@ class EtapaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $etapa = Etapa::find($id);
+        $etapa->fechainicio = $request->fechainicio;
+        $etapa->fechafin = $request->fechafin;
+        $etapa->nivel = $request->nivel;
+        $etapa->save();
+        return $etapa;
     }
 
     /**

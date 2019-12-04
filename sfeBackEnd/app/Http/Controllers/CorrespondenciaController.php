@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Correspondencia;
+use Response;
 
 class CorrespondenciaController extends Controller
 {
@@ -44,6 +45,7 @@ class CorrespondenciaController extends Controller
         $correspondencia->asunto = $request->asunto;
         $correspondencia->idprioridad = $request->idprioridad;
         $correspondencia->idempresa = $request->idempresa;
+        $correspondencia->url_anexo = $request->url_anexo;
         $correspondencia->save();
         return $correspondencia;
     }
@@ -101,6 +103,6 @@ class CorrespondenciaController extends Controller
     public function destroy($id)
     {
         Correspondencia::find($id)->delete();
-        return 'ok';
+        return Response::json('{status: 200}');
     }
 }

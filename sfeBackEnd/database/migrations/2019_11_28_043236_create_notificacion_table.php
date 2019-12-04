@@ -15,7 +15,8 @@ class CreateNotificacionTable extends Migration
     {
         Schema::create('notificacion', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fechaEnvio');
+            $table->string('fechaenvio');
+            $table->string('descripcion');
             $table->boolean('revisado');
             $table->bigInteger('idasignacion')->unsigned()->nullable();
             $table->foreign('idasignacion')->references('id')->on('asignacion')->delete('cascade');

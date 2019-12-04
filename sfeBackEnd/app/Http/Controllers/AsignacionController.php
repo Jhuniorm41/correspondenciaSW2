@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Asignacion;
+use Response;
 
 class AsignacionController extends Controller
 {
@@ -102,6 +103,6 @@ class AsignacionController extends Controller
     public function destroy($id)
     {
         Asignacion::find($id)->delete();
-        return 'ok';
+        return Response::json('{status: 200}');
     }
 }

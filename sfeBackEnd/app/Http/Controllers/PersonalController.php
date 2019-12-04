@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Personal;
+use Response;
 
 class PersonalController extends Controller
 {
@@ -103,6 +104,6 @@ class PersonalController extends Controller
     public function destroy($id)
     {
         Personal::find($id)->delete();
-        return 'ok';
+        return Response::json('{status: 200}');
     }
 }

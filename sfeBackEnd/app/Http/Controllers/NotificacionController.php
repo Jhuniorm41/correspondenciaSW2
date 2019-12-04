@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Notificacion;
 
 class NotificacionController extends Controller
 {
@@ -13,7 +13,8 @@ class NotificacionController extends Controller
      */
     public function index()
     {
-        //
+        $notificacion = Notificacion::all();
+        return $notificacion;
     }
 
     /**
@@ -34,7 +35,12 @@ class NotificacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $notificacion = new Notificacion();
+        $notificacion->fechaenvio = $request->fechaenvio;
+        $notificacion->revisado = $request->revisado;
+        $notificacion->idasignacion = $request->idasignacion;
+        $notificacion->save();
+        return $notificacion;
     }
 
     /**
@@ -68,7 +74,13 @@ class NotificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $notificacion = Notificacion::find($id);
+        $notificacion->fechaenvio = $request->fechaenvio;
+        $notificacion->revisado = $request->revisado;
+        $notificacion->descripcion = $request->descripcion;
+        $notificacion->idasignacion = $request->idasignacion;
+        $notificacion->save();
+        return $notificacion;
     }
 
     /**
