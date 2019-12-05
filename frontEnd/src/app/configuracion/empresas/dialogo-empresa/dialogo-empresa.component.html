@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-dialog">
+      <span>{{form.controls['id'].value?"Editar Empresa":"Crear Empresa"}}</span>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div fxLayout="row wrap" fxFlexAlign="center">
+          <div fxFlex.gt-xs="100" fxFlex="100">
+            <div fxLayout="row wrap">
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintLabel="Solo se permite texto y números, máximo 120 caracteres" class="example-full-width">
+                      <input type="text" formControlName="nombre" matInput #input maxlength="120" placeholder="Nombre" required
+                        pattern="[a-zA-ZÑñ0-9\s]+">
+                      <mat-error>Solo se permite texto y numeros, máximo 120 caracteres</mat-error>
+                    </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintLabel="Solo se permite texto, números, mínimo 5 y máximo 255 caracteres" class="example-full-width">
+                      <input type="text" formControlName="direccion" matInput #input minlength="5" maxlength="255" placeholder="Dirección" required
+                        pattern="[0-9a-zA-ZÑñ./#\s]+">
+                      <mat-error>Solo se permite texto y números, máximo 255 caracteres</mat-error>
+                    </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintLabel="Solo se permite número, mínimo 7 y máximo 8 dígitos" class="example-full-width">
+                      <input type="number" formControlName="telefono" matInput #cant placeholder="Teléfono" required pattern="^[0-9]{7,8}$">
+                      <mat-error>Solo se permite número, mínimo 7 y máximo 8 dígitos</mat-error>
+                      <mat-hint align="end">{{cant.value.length}}</mat-hint>
+                    </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+      <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="guardar()"
+      class="botones-footer-dialog" [disabled]="!form.valid" > Guardar </button>
+    <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+      Cancelar </button>
+  </div>

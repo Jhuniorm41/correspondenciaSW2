@@ -1,0 +1,40 @@
+
+.body-container {
+    height: 85%;
+  }
+  
+  .footer-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 15%;
+    padding: 20%;
+    background-color: transparent;
+    text-align: center;
+  }
+  
+  .color-background-toolbar {
+    background-color: #FFFFFF;
+  }
+  .link-logo {
+    background-image: url(assets/images/logo/mc4-logo-link.svg);
+  }
+  
+  .icon-footer {
+    font-size: 14px;
+    margin-right: 5px;
+    color: #da8f22;
+  }
+  
+  .text-footer {
+    color: #da8f22;
+    font-weight: 900;
+    font-size: 10px;
+  }
+  
+  .text-control {
+    text-align: end;
+  }
+  

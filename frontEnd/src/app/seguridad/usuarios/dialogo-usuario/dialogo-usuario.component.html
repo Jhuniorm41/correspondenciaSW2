@@ -1,0 +1,78 @@
+<mat-card>
+  <mat-card-header class="mat-card-header-dialog">
+    <span>{{form.controls['id'].value?"Editar Usuario":"Crear Usuario"}}</span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-xs="100" fxFlex="100">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintlabel="Solo se permite texto sin espacios y dígitos, máximo 20 caracteres."  class="example-full-width">
+                <input type="text" formControlName="usuario" matInput #input maxlength="20" placeholder="Usuario" required pattern="[a-zA-ZÑñ0-9_]+"
+                [readonly]="form.controls['id'].value? true:false">
+                <mat-error>Solo se permite texto sin espacios y dígitos, máximo 20 caracteres.</mat-error>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+
+              <mat-form-field hintlabel="Se permite texto, caracteres especiales y números." class="example-full-width">
+                <input type="password" formControlName="password" matInput #input maxlength="500"  placeholder="Contraseña">
+                <mat-error>La contraseña es requerida.</mat-error>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintlabel="Solo se permite texto, máximo 60 caracteres." class="example-full-width">
+                <input type="text" formControlName="nombre" matInput #input maxlength="60" placeholder="Nombre" required pattern="[a-zA-ZÑñ\s]+">
+                <mat-error>Solo se permite texto, máximo 60 caracteres.</mat-error>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintlabel="Solo se permite texto, máximo 60 caracteres." class="example-full-width">
+                <input type="text" formControlName="apellido" matInput #input maxlength="60" placeholder="Apellido" required pattern="[a-zA-ZÑñ\s]+">
+                <mat-error>Solo se permite texto, máximo 60 caracteres.</mat-error>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintLabel="Solo se permite dígitos máximo 8." class="example-full-width">
+                <input id="telefono" required pattern="^([0-9]){8}$" formControlName="telefono" matInput #input
+                    maxlength="8" placeholder="Teléfono">
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintlabel="Se permite texto, caracteres especiales y números." class="example-full-width">
+                <input id="email" type="email" formControlName="email" matInput placeholder="Email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+                <mat-error>El email es inválido.</mat-error>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintlabel="Seleccione un ROL" class="example-full-width">
+                <mat-select [(value)]="selected" matInput placeholder="Seleccioné un ROL">
+                    <mat-option *ngFor="let roles of listaRoles" [value]="roles.id">
+                        <th>{{ roles.nombre }}&nbsp;</th>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            </div>
+            <div *ngIf="operacion !== 'editar'"  fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintlabel="Seleccione una Empresa" class="example-full-width">
+                  <mat-select [(value)] = "companyId" matInput placeholder="Seleccioné una Empresa">
+                      <mat-option [value]= "0">Ninguno</mat-option>
+                      <mat-option *ngFor="let row of empresaList" [value]="row.id">
+                          <th>{{row.nombre}}&nbsp;</th>
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+    <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="guardar()"
+    class="botones-footer-dialog" [disabled]="!form.valid || selected == null"> Guardar </button>
+  <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+    Cancelar </button>
+</div>

@@ -1,0 +1,131 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~material-design-icons/iconfont/material-icons.css';   
+
+/* fallback */
+/* @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('assets/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2') format('woff2');
+  } */
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  
+  .hr-titulo {
+    height:3px;
+    border:none;
+    background-color:#e6294b;
+    margin-bottom: 15px;
+    margin-top: 0px;
+  
+  }
+  .quitar-margin-top-bottom-h3{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .mat-card-header-dialog {
+    background-color: #05468D;
+    color:#FFFFFF;
+  }
+  
+  .mat-card {
+    margin-left: 10px !important;
+    margin-top: 10px !important;
+    margin-right: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .mat-card .mat-card-content {
+    padding-top: 15px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-bottom: 15px !important;
+  }
+  
+  .mat-dialog-container {
+    padding-top: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    /*padding-bottom: 5px !important;*/
+  }
+  
+  .mat-card .mat-card-header {
+    padding-top: 5px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    padding-bottom: 5px !important;
+  }
+  
+  .mat-card-header-text {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  
+  .mat-card .mat-card-header .mat-card-title {
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  
+  .botones-footer-dialog {
+    width: 150px !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+  }
+  .botones-footer-dialog-right {
+    display: block !important;
+  }
+  .header-dialog-title {
+    margin: 5px;
+  }
+  
+  
+  .ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    font-size: 12px !important;
+  }
+  
+  .mat-card-subtitle, .mat-card-content {
+    font-size: 12px !important;
+  }
+  
+  .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+    font-size: 12px !important;
+  }
+  
+  .mat-chip {
+    font-size: 12px !important;
+  }
+  
+  .mat-form-field-appearance-legacy .mat-form-field-label {
+    font-size: 14px !important;
+  }
+  
+  .btn-header {
+    /*text-align: center;*/
+    /*margin-top: 15px;*/
+    margin-right: 15px;
+  }
+  .filtro-header {
+    /*text-align: center;*/
+    margin-right: 15px;
+  }
+  

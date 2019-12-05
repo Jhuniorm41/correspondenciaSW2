@@ -1,0 +1,9 @@
+<font class="font-color-header" SIZE=2>{{this.usuario}}</font>
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
+    <mat-icon  color="white">person</mat-icon>
+<mat-menu #profile="matMenu" class="mymegamenu">
+        <button mat-menu-item (click)="getProfile()">
+                <mat-icon  color="primary">person</mat-icon> Perfil </button>
+    <button mat-menu-item (click)="logout()">
+        <mat-icon color="primary">exit_to_app</mat-icon> Cerrar sesión </button>
+</mat-menu>

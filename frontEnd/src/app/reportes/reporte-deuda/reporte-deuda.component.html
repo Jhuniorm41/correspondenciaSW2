@@ -1,0 +1,98 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Reporte de Deudas</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout.lg="row" fxLayout.sm="row" fxLayout.md="row" fxLayout.xs="column">
+        <div fxFlex.lg="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+            <mat-form-field>
+                <input matInput #message maxlength="50" name="query" [(ngModel)]="query" (keyup.enter)="searchCustomer()"
+                    placeholder="Nombre, Apellido, CI, Código integración" type="search" name="search">
+                <mat-hint align="start"><strong></strong> </mat-hint>
+                <mat-hint align="end">{{message.value.length}} / 50</mat-hint>
+            </mat-form-field>
+          </div>
+      <div fxFlex.lg="25" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+        <button
+          [style.width]="'100%'" id="btnCrear" class="btn" mat-raised-button color="primary"
+          (click)="this.searchCustomer()">
+          <mat-icon>search</mat-icon> &nbsp; Buscar
+        </button>
+      </div>
+      &nbsp;
+    </div>
+    <br>
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table
+        class='material'
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [externalPaging]="true"
+        [rowHeight]="'auto'"
+        [count]="this.pageControl.totalElements"
+        [offset]="this.pageControl.number"
+        [limit]="this.pageControl.size"
+        [rows]="this.pageControl.content"
+        (page)='this.setPage($event)'>
+          <ngx-datatable-column name="Id Integración" [width]="120" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.idIntegracion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Cod. Integración" [width]="130" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cliente.codIntegracion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cliente.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cliente.apellido}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="C.I" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cliente.ci}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Categoría" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.categoria.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Concepto" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.concepto}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Monto" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.monto | number:'1.2-2'}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Moneda" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.moneda}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Estado" [width]="120" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.estado}}
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

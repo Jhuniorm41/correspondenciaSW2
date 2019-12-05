@@ -1,0 +1,44 @@
+<mat-card>
+  <mat-card-header class="mat-card-header-dialog">
+    <span>Asignación de Token</span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-xs="100" fxFlex="100">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-xs="100" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input  type="text" formControlName="usuario" matInput placeholder="Usuario" readonly>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="100" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input  type="text" formControlName="nombre" matInput placeholder="Nombre" readonly>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="100" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input  type="text" formControlName="apellido" matInput placeholder="Apellido" readonly>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="100" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerFin" (dateChange)="getDateFin($event)"
+                    placeholder="Fecha finalización del token" disabled>
+                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFin disabled="false"></mat-datepicker>
+            </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+    <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="onSubmit()"
+    class="botones-footer-dialog" [disabled]="!form.valid || this.fechaFin === ''"> Generar </button>
+  <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+    Cancelar </button>
+</div>

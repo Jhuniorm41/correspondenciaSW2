@@ -1,0 +1,136 @@
+<mat-card>
+  <mat-card-header class="mat-card-header-dialog">
+    <span>Configuración de DataSource</span>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-horizontal-stepper [linear]="isLinear">
+      <mat-step [stepControl]="dataSourceForm">
+          <ng-template matStepLabel>Configuración del Data Source</ng-template>
+          <form [formGroup]="dataSourceForm" (submit)="onSubmit()" aria-hidden="true">
+              <div fxLayout="row wrap" fxFlexAlign="center">
+                  <div fxFlex.gt-xs="100" fxFlex="100">
+                    <div fxLayout="row wrap">
+                <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field class="example-full-width">
+                  <mat-select [(value)]="this.selected" formControlName="tipo" (selectionChange)="optionsImput($event.value)"
+                    placeholder="Tipo de DataSource">
+                    <mat-option *ngFor="let enum of enums" [value]="enum">
+                      <th>{{ enum| uppercase }}&nbsp;</th>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 120 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="nombre" matInput #input maxlength="120" placeholder="Nombre">
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="descripcion" matInput #input maxlength="255"
+                    placeholder="Descripción">
+                </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="url" matInput #input maxlength="255" placeholder="URL">
+                </mat-form-field>
+              </div>
+              <div *ngIf="(this.tipo !== 'file')"  fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="driverClassName" matInput #input maxlength="255"
+                    placeholder="Driver Class Name">
+                </mat-form-field>
+              </div>
+              <div *ngIf="(this.tipo !== 'file')" fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="number" formControlName="maxPoolSize" matInput #input maxlength="255"
+                    placeholder="Max Pool Size">
+                </mat-form-field>
+              </div>
+              <div *ngIf="(this.tipo !== 'file')" fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+  
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="usuario" matInput #input maxlength="255" placeholder="Usuario">
+                </mat-form-field>
+              </div>
+              <div *ngIf="(this.tipo !== 'file')" fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                <mat-form-field hintLabel="Solo se permite texto y números, máximo 255 caracteres"
+                  class="example-full-width">
+                  <input type="text" formControlName="password" matInput #input maxlength="255" placeholder="Contraseña">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+          </form>
+      </mat-step>
+      <mat-step [stepControl]="parametroConexionForm">
+        <form [formGroup]="parametroConexionForm">
+            <div fxLayout="row wrap" fxFlexAlign="center">
+                <div fxFlex.gt-xs="100" fxFlex="100">
+                  <div fxLayout="row wrap">
+          <ng-template matStepLabel>Parametros de Conexión</ng-template>
+          <div fxFlex.gt-xs="30" fxFlex="50" class="p-l-10">
+          <mat-form-field>
+            <input matInput placeholder="Nombre" formControlName="name" required>
+          </mat-form-field>
+        </div>
+        <div fxFlex.gt-xs="30" fxFlex="50" class="p-l-10">
+          <mat-form-field>
+              <input matInput placeholder="Valor" formControlName="value" required>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-xs="30" fxFlex="50" class="p-l-10">
+              <button id="btnAgregarJefesProyectos" class="btn" mat-raised-button color="primary"
+                    (click)="this.agregar(this.parametroConexionForm)" [disabled]="!parametroConexionForm.valid">Agregar</button>
+              </div>
+        </div>
+      </div>
+    </div>
+        </form>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="accion">
+                <th style="width: 15%;" mat-header-cell *matHeaderCellDef>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Acciones</th>
+                <td style="width: 15%;" mat-cell *matCellDef="let element">
+                  <button id="btnEliminar" mat-icon-button (click)="sacarDeLista(element)">
+                    <mat-icon color="warn">delete
+                    </mat-icon>
+                  </button></td>
+              </ng-container>
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element">
+                        <mat-form-field style="width:250px;"><input matInput type="text"
+                          (change)="this.editarValor(element, $event.target.value, 'name')"
+                          value="{{element.name}}" maxlength="20"></mat-form-field>
+                  </td>
+              </ng-container>
+              <ng-container matColumnDef="valor">
+                  <th mat-header-cell *matHeaderCellDef>Valor</th>
+                  <td mat-cell *matCellDef="let element"><mat-form-field style="width:250px;"><input matInput type="text"
+                    (change)="this.editarValor(element, $event.target.value, 'value')"
+                    value="{{element.value}}" maxlength="20"></mat-form-field></td>
+                </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator  #paginator [pageSizeOptions]="[3, 4]" showFirstLastButtons></mat-paginator>
+          </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
+<div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+    <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="onSubmit()"
+    class="botones-footer-dialog"> Guardar </button>
+  <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+    Cancelar </button>
+</div>

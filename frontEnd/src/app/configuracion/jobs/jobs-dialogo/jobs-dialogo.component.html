@@ -1,0 +1,61 @@
+<mat-card>
+  <mat-card-header class="mat-card-header-dialog">
+    <span>Configuración de Job</span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="jobForm">
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-xs="100" fxFlex="100">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintLabel="No modificable" class="example-full-width">
+                <input type="text" formControlName="jobName" matInput placeholder="Nombre Job" readonly>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field hintLabel="No modificable" class="example-full-width">
+                <input type="text" formControlName="description" matInput placeholder="Descripción" readonly>
+            </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <mat-select [(value)]="cronExpression" formControlName="cronExpression" placeholder="Cron Expression" required>
+                    <mat-option>Seleccionar una opción</mat-option>
+                    <mat-option value="0/1 * * * * ? *">0/1 * * * * ? * --> Cada segundo</mat-option>
+                    <mat-option value="0/5 * * * * ? *">0/5 * * * * ? * --> Cada 5 segundos</mat-option>
+                    <mat-option value="0/10 * * * * ? *">0/10 * * * * ? * --> Cada 10 segundos</mat-option>
+                    <mat-option value="0/20 * * * * ? *">0/20 * * * * ? * --> Cada 20 segundos</mat-option>
+                    <mat-option value="0 0/1 * * * ?">0 0/1 * * * ? --> Cada minuto</mat-option>
+                    <mat-option value="0 0/2 * * * ?">0 0/2 * * * ? --> Cada dos minutos</mat-option>
+                    <mat-option value="0 0/5 * * * ?">0 0/5 * * * ? --> Cada cinco minutos</mat-option>
+                    <mat-option value="0 0/10 * * * ?">0 0/10 * * * ? --> Cada 10 minutos </mat-option>
+                    <mat-option value="0 0/20 * * * ?">0 0/20 * * * ? --> Cada 20 minutos </mat-option>
+                    <mat-option value="0 0 * ? * *">0 0 * ? * * --> Cada hora </mat-option>
+                    <mat-option value="0 0 8 * * ?">0 0 8 * * ? --> A las 08:00 am todos los días </mat-option>
+                    <mat-option value="0 0 12 * * ?">0 0 12 * * ? --> A las 12:00 pm todos los días </mat-option>
+                    <mat-option value="0 12 0 ? * MON-FRI">0 12 0 ? * MON-FRI --> A las 12:00 am de lunes a viernes </mat-option>
+                    <mat-option value="0 0 * ? * 1/1 *">0 0 * ? * 1/1 * --> Cada hora, todos los días a partir del domingo </mat-option>
+                    <mat-option value="0 0 12 15 *?">0 0 12 15 *? --> A las 12:00:00 pm el día 15 todos los meses </mat-option>
+                    <mat-option value="0 0 10 ? * SAT,SUN *">0 0 10 ? * SAT,SUN * -->  A las 10:00 am los Sábados y Domingos</mat-option>
+                    <mat-option value="0 0 12 1 1/5 ? *">0 0 12 1 1/5 ? * --> A las 12:00 pm, cada 5 meses a partir de enero</mat-option>
+                </mat-select>
+            <mat-error>La expresión Cron es requerido.</mat-error>
+        </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <div class="col-lg-11 col-md-11">
+                <p>Ha Seleccionado: {{cronExpression}}</p>
+           </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+    <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="onSubmit()"
+    class="botones-footer-dialog" [disabled]="!jobForm.valid" > Guardar </button>
+  <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+    Cancelar </button>
+</div>

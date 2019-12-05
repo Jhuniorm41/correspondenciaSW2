@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-dialog">
+      <span>{{form.controls['id'].value?"Editar Contacto":"Crear Contacto"}}</span>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div fxLayout="row wrap" fxFlexAlign="center">
+          <div fxFlex.gt-xs="100" fxFlex="100">
+            <div fxLayout="row wrap">
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintlabel="Solo se permite texto, máximo 60 caracteres" class="example-full-width">
+                      <input type="text" formControlName="nombre" matInput #input maxlength="60" required pattern="[a-zA-ZÑñ\s]+" placeholder="Nombre" >
+                      <mat-error>Solo se permite texto, máximo 60 caracteres.</mat-error>
+                  </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintLabel="Solo dato numérico" class="example-full-width">
+                      <input type="number" id="frecuencia" formControlName="frecuencia" matInput #cantidad
+                          maxlength="8" placeholder="Frecuencia en Días">
+                          <mat-error>Solo se permite dato numérico.</mat-error>
+                          <mat-hint align="end">{{cantidad.value.length}}</mat-hint>
+                  </mat-form-field>
+              </div>
+              <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+                  <mat-form-field hintLabel="Solo se permite numero" class="example-full-width">
+                      <input type="number" formControlName="cantdias" matInput #input
+                      maxlength="50" placeholder="Anticipación en Días">
+                      <mat-error>Solo se permite numeros</mat-error>
+                  </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+      <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="guardar()"
+      class="botones-footer-dialog" [disabled]="!form.valid"> Guardar</button>
+    <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+      Cancelar </button>
+  </div>
+  

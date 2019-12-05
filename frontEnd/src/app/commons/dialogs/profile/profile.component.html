@@ -1,0 +1,103 @@
+<mat-card>
+  <mat-card-header class="mat-card-header-dialog">
+    <span>Perfil</span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-xs="100" fxFlex="100">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" name="Usuario" placeholder="Usuario" class="disabled"
+                  formControlName="usuario">
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Nombre" name="Nombre"
+                  formControlName="nombre">
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Apellido" name="Apellido"
+                  formControlName="apellido">
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Email" name="Email" formControlName="email"/>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Telefono" name="Telefono"
+                  formControlName="telefono"/>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="40" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" class="disabled" placeholder="Contraseña" name="Contraseña"
+                  formControlName="password">
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="10" fxFlex="50" class="p-l-10">
+              <button id="btnCopy" mat-icon-button (click)="this.cambiarContrasenia()">
+                <mat-icon color="primary" matTooltip="Cambiar Contraseña">vpn_key</mat-icon>
+              </button>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Empresa" name="Empresa"
+                  formControlName="empresa">
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="50" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="text" class="disabled" placeholder="Rol" name="Rol" formControlName="rol">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <form *ngIf="this.cambioContrasenia" [formGroup]="passwordForm">
+      <div fxLayout="row wrap" fxFlexAlign="center">
+        <div fxFlex.gt-xs="100" fxFlex="100">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-xs="33" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" class="disabled" placeholder="Contraseña actual" name="Contraseña"
+                  formControlName="presentPassword">
+                  <mat-error *ngIf="f?.presentPassword?.errors?.minlength">Contraseña debe contener minimo 6 caracteres
+                  </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="34" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" class="disabled" placeholder="Nueva contraseña" name="Empresa"
+                  formControlName="newPassword">
+                  <mat-error *ngIf="f?.newPassword?.errors?.minlength">Contraseña debe contener minimo 6
+                    caracteres </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxFlex.gt-xs="33" fxFlex="50" class="p-l-10">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" class="disabled" placeholder="Confirmar contraseña" name="Empresa"
+                  formControlName="confirmPassword">
+                  <mat-error *ngIf="f?.confirmPassword?.errors?.mustMatch">Contraseñas no coinciden</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+    <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="guardar()"
+    class="botones-footer-dialog" [disabled]="!passwordForm.valid"> Guardar </button>
+  <button id="cerrar" name="cerrar" mat-stroked-button color="warn" (click)="close()" class="botones-footer-dialog">
+    Cerrar </button>
+</div>

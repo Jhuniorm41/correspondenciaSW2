@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Usuarios</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout.lg="row" fxLayout.sm="row" fxLayout.md="row" fxLayout.xs="column">
+      <div fxFlex.lg="25" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+        <button
+          [style.width]="'100%'" id="btnCrear" class="btn" mat-raised-button color="primary"
+          (click)="abrirDialogo(null)">
+          <mat-icon>add</mat-icon> &nbsp; Crear Usuario
+        </button>
+      </div>
+      &nbsp;
+    </div>
+    <br>
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table 
+          class='material' 
+          [headerHeight]="50" 
+          [footerHeight]="50" 
+          [rowHeight]="'auto'"
+          [rows]="this.listaUsuarios" 
+          [scrollbarH]="true"
+          [columnMode]="'force'"
+          [limit]="10">
+          <ngx-datatable-column name="Acciones" [width]="200" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <div fxLayout="row wrap">
+                    <div fxFlex="350" fxFlexAlign="start start">
+                      <button id="btnEditar" mat-icon-button matTooltip="Modificar"
+                              (click)="this.abrirDialogo(row)">
+                        <mat-icon color="primary" class="iconSmall">edit</mat-icon>
+                      </button>
+                      <button id="btnEliminar" mat-icon-button
+                              (click)="this.eliminar(row)">
+                        <mat-icon color="warn" matTooltip="Eliminar">delete</mat-icon>
+                      </button>
+                      <button id="btnAsignacion" mat-icon-button
+                          (click)="this.abrirDialogoDeAsignacion(row)">
+                      <mat-icon color="primary" matTooltip="Asignación de empresas">domain</mat-icon>
+                     </button>
+                    </div>
+                  </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Usuario" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.usuario}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.apellido}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Rol" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.rol.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Teléfono" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.telefono}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Correo" [width]="200" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.email}}
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

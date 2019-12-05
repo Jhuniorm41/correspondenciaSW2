@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Jobs</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table class='material' [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+          [rows]="this.jobs" [scrollbarH]="true" [limit]="10" [columnMode]="'force'">
+          <ngx-datatable-column name="Acciones" [maxWidth]="350" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div fxLayout="row wrap">
+                <div fxFlex="380" fxFlexAlign="start start">
+                  <button id="btnEjecutar" mat-icon-button matTooltip="Ejecutar" (click)="this.startJob(row)">
+                    <mat-icon color="primary" class="iconSmall">play_arrow</mat-icon>
+                  </button>
+                  <button id="btnPausar" mat-icon-button matTooltip="Pausar" (click)="this.pauseJob(row)">
+                    <mat-icon color="warn">pause</mat-icon>
+                  </button>
+                  <button id="btnReanuar" mat-icon-button matTooltip="Reanuar" (click)="this.resumeJob(row)">
+                    <mat-icon color="primary">replay</mat-icon>
+                  </button>
+                  <button id="btnModificar" mat-icon-button matTooltip="Modificar" (click)="this.editJob(row)">
+                    <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.jobName}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Descripción" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.description}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Expresión Cron" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.cronExpression}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Estado" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.jobStatus}}
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

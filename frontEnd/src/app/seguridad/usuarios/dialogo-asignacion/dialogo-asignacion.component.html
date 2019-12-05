@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-header class="mat-card-header-dialog">
+      <span>Asignación de Empresas</span>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-container *ngIf="enable">        
+            <mat-card-content>
+                <div fxFlex="50"
+                    #noAsignados="cdkDropList"
+                    cdkDropList 
+                    [cdkDropListConnectedTo]="asignados"
+                    [cdkDropListData]="listNoAsignados"
+                    class="example-list"
+                    cdkDropListSortingDisabled
+                    (cdkDropListDropped)="drop($event)" class="__lista">
+                    <mat-card-header class="mat-card-header-dialog"><span>No Asignados</span></mat-card-header>
+                    <div *ngFor="let noAsignado of listNoAsignados; let i = index" cdkDrag class="__sucursal">
+                      <span color="primary" class="font-10">Empresa: </span><span>{{noAsignado.nombre}}</span>
+                      <mat-icon color="primary" style="position: absolute; right: 0; top: 50%; transform: translate(0, -50%);" 
+                      (click)="onRemoveClick(i)">add_circle_outline</mat-icon>
+                    </div>
+                </div>
+                <div fxFlex="50"
+                    #asignados="cdkDropList"
+                    cdkDropList
+                    [cdkDropListConnectedTo]="noAsignados"
+                    [cdkDropListData]="listAsignados"
+                    class="example-list"
+                    cdkDropListSortingDisabled
+                    (cdkDropListDropped)="drop($event)" class="__lista">
+                    <mat-card-header class="mat-card-header-dialog"><span>Asignados</span></mat-card-header>
+                    <div *ngFor="let asignado of listAsignados; let i = index" cdkDrag class="__sucursal">
+                      <span color="primary" class="font-10">Empresa: </span><span>{{asignado.nombre}}</span>
+                      <mat-icon color="warn" style="position: absolute; right: 0; top: 50%; transform: translate(0, -50%);" 
+                      (click)="onAddClick(i)">remove_circle_outline</mat-icon>
+                    </div>
+                </div>
+            </mat-card-content>
+          </ng-container>
+    </mat-card-content>
+  </mat-card>
+  <div mat-dialog-actions [style.text-align]="'right'" class="botones-footer-dialog-right">
+      <button id="guardar" name="guardar" mat-flat-button color="primary" (click)="onSaveClick()"
+      class="botones-footer-dialog"> Guardar </button>
+    <button id="cancelar" name="cancelar" mat-stroked-button color="warn" (click)="cancel()" class="botones-footer-dialog">
+      Cancelar </button>
+  </div>

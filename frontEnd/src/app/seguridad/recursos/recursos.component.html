@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-content>
+    <!-- <mat-card-title>Componente Configuración Ponderación</mat-card-title> -->
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Recursos</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table 
+          class='material' 
+          [headerHeight]="50" 
+          [footerHeight]="50" 
+          [rowHeight]="'auto'"
+          [rows]="this.listaRecurso" 
+          [scrollbarH]="true"
+          [columnMode]="'force'"
+          [limit]="10">
+          <ngx-datatable-column name="Acciones" [maxWidth]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <div fxLayout="row wrap">
+                    <div fxFlex="380" fxFlexAlign="start start">
+                      <button id="btnEditar" mat-icon-button matTooltip="Modificar"
+                              (click)="this.abrirDialogo(row)">
+                        <mat-icon color="primary" class="iconSmall">edit</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="URL" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.url}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Icono" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <mat-icon color="primary" class="iconSmall">{{row.icono}}</mat-icon>
+            </ng-template>
+          </ngx-datatable-column>
+          <!-- <ngx-datatable-column name="Id Recurso Principal" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.idRecurso}}
+            </ng-template>
+          </ngx-datatable-column> -->
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

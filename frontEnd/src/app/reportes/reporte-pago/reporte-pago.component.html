@@ -1,0 +1,103 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Reporte de Pagos</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout.lg="row" fxLayout.sm="row" fxLayout.md="row" fxLayout.xs="column">
+        <div fxFlex.lg="20" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+          <mat-form-field class="picker-date-filter">
+            <input matInput [matDatepicker]="startDate" [max]="this.today" placeholder="Fecha Inicio" [formControl]="this.form.get('fechaInicial')" disabled>
+            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+            <mat-datepicker #startDate disabled="false"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div fxFlex.lg="20" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+        <mat-form-field class="picker-date-filter">
+          <input matInput [matDatepicker]="endDate" [max]="this.today" placeholder="Fecha Fin" [formControl]="this.form.get('fechaFinal')" disabled>
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex.lg="35" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+        <mat-form-field>
+          <input matInput #message maxlength="50" name="query" [(ngModel)]="query" (keyup.enter)="this.onSearch()"
+              placeholder="Nombre, Apellido, CI, Código integración" type="search" name="search">
+          <mat-hint align="start"><strong></strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 50</mat-hint>
+      </mat-form-field>
+      </div>
+      <div fxFlex.lg="25" fxFlex.sm="50" fxFlex.md="50" fxFlex.xs="100" class="btn-header">
+        <button
+          [style.width]="'100%'" id="btnCrear" class="btn" mat-raised-button color="primary"
+          (click)="this.onSearch()">
+          <mat-icon>search</mat-icon> &nbsp; Buscar
+        </button>
+      </div>
+      &nbsp;
+    </div>
+    <br>
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table
+          class='material'
+          [scrollbarH]="true"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [rows]="this.pageControl.content"
+          [scrollbarH]="true"
+          [limit]="10">
+          <ngx-datatable-column name="Id Pago Transacción" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.idPagoTransaccion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Fecha Pago" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.fechaPago | date: "dd/MM/yyyy"}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Monto" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.monto | number:'1.2-2'}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.apellido}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="C.I" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.ci}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Cod. Integración" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.codIntegracion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Estado Pago" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.estadoPago}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Estado Sincronización" [width]="180" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.estadoSincronizacion}}
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

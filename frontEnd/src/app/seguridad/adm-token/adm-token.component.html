@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row wrap" class="centrear">
+      <div fxFlex="90">
+        <h3 class="quitar-margin-top-bottom-h3">Adm Token</h3>
+      </div>
+    </div>
+    <br>
+    <hr class="hr-titulo">
+    <div fxLayout="row wrap">
+      <div fxFlex="100">
+        <ngx-datatable #table class='material' [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+          [rows]="this.listaUsuarios" [scrollbarH]="true" [limit]="10" [columnMode]="'force'">
+          <ngx-datatable-column name="Acciones" [maxWidth]="350" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div fxLayout="row wrap">
+                <div fxFlex="380" fxFlexAlign="start start">
+                  <button id="btnEditar" mat-icon-button matTooltip="Generar" (click)="this.abrirDialogoCreate(row)">
+                    <mat-icon color="primary" class="iconSmall">vpn_key</mat-icon>
+                  </button>
+                  <button id="btnEliminar" mat-icon-button (click)="this.abrirDialogoVista(row)">
+                    <mat-icon color="primary" matTooltip="Ver">visibility</mat-icon>
+                  </button>
+                  <button id="btnEliminar" mat-icon-button (click)="this.eliminar(row)">
+                    <mat-icon color="warn" matTooltip="Eliminar">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Usuario" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.usuario}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Nombre" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Apellido" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.apellido}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Rol" [width]="100" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.rol.nombre}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Teléfono" [width]="150" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.telefono}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Correo" [width]="200" [draggable]="false" [resizeable]="false">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{row.email}}
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
